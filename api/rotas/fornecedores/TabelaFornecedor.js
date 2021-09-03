@@ -1,3 +1,4 @@
+const { removeListener } = require('process')
 const modelo = require('./ModeloTabelaFornecedor')
 module.exports = {
     listar() {
@@ -15,5 +16,16 @@ module.exports = {
         }
 
         return encontrado
+    },
+    async atualizar(id, dados) {
+        return modelo.update(dados, {
+            where: {
+                id: id
+            }
+        })
+    },
+
+    remover(id) {
+        return modelo.destroy({where:{id}})
     }
 }
