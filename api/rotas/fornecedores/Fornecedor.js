@@ -21,9 +21,9 @@ class Fornecedor {
         this.dataCriacao = resultado.dataCriacao
         this.versao = resultado.versao
     }
-    async carregar(id) {
-        const fornecedorEncontrado = await TabelaFornecedor.buscarPorId(id)
-        this.id = id
+    async carregar() {
+        const fornecedorEncontrado = await TabelaFornecedor.buscarPorId(this.id)
+        console.log(fornecedorEncontrado)
         this.empresa = fornecedorEncontrado.empresa
         this.email = fornecedorEncontrado.email
         this.categoria = fornecedorEncontrado.categoria

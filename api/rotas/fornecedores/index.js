@@ -25,8 +25,9 @@ roteador.post('/', (req, res) => {
 roteador.get('/:id', async (req, res) => {
     try {
         const idFornecedor = req.params.id
-        const fornecedor = new Fornecedor({ idFornecedor })
-        await fornecedor.carregar(idFornecedor)
+        const fornecedor = new Fornecedor({ id: idFornecedor })
+        console.log(fornecedor)
+        await fornecedor.carregar()
         res.status(200).send(fornecedor)
     } catch(err) {
         res.send({mensagem: err.message})
@@ -52,11 +53,13 @@ roteador.delete('/:id', async (req, res) => {
     try {
         const id = req.params.id
         const fornecedor = new Fornecedor({id})
+        console.log(fornecedor)
         await fornecedor.carregar()
+        console.log(fornecedor)
         await fornecedor.remover()
         res.end()
         
-    } catch (error) {
+    } catch (err) {
         res.send(err)
     }
 })
